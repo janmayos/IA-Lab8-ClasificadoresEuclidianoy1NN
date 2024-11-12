@@ -1,5 +1,5 @@
 from Clasificador import leave_one_out,k_fold_cross_validation,hold_out_70_30,clasificador_1nn,clasificador_euclidiano
-from Datasets import crear_matriz_linea_linea_archivo,procesar_data,separar_caracteristicas_clases
+from datasets import crear_matriz_linea_linea_archivo,procesar_data,separar_caracteristicas_clases
 from Excel import crear_excel
 
 def ejecutar(rutas_data):

@@ -10,6 +10,7 @@ import random
 def euclidean_distancia(point1, point2):
     return math.sqrt(sum((p1 - p2) ** 2 for p1, p2 in zip(point1, point2)))
 
+###3 distanias media
 
 def clasificador_euclidiano(caracteristicas, clases, punto_prueba):
     """Clasifica un punto de prueba utilizando la distancia euclidiana."""
