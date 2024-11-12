@@ -35,8 +35,9 @@ def ejecutar(rutas_data):
         acc_lo, cm_lo = leave_one_out(caracteristicas, clases, clasificador_1nn)
         dataexcel.append("{:.2f}%".format(acc_lo * 100))
         dataexcelmatriz.append(dataexcel)
-        crear_excel("Dataset accuracy",dataexcelmatriz,["Ruta dataset","Euclidiano HO","Euclidiano KF CV","Euclidiano LOO","1-NN HO","1-NN KF CV","1-NN LOO"])
+    print(dataexcelmatriz)
+    crear_excel("Dataset accuracy",dataexcelmatriz,["Ruta dataset","Euclidiano HO","Euclidiano KF CV","Euclidiano LOO","1-NN HO","1-NN KF CV","1-NN LOO"])
 
 
 if __name__ == "__main__":
-    ejecutar(['iris/bezdekIris.data'])
+    ejecutar(['iris/bezdekIris.data',"./Dataset/ClaseAB.data","./Dataset/ClaseXYZ.data"])

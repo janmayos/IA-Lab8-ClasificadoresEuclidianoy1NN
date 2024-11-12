@@ -13,20 +13,30 @@ def euclidean_distancia(point1, point2):
 ###3 distanias media
 
 def clasificador_euclidiano(caracteristicas, clases, punto_prueba):
-    """Clasifica un punto de prueba utilizando la distancia euclidiana."""
+    """Clasifica un punto de prueba utilizando la distancia media de cada clase."""
     
-    # Inicializar la distancia mínima como infinito
-    min_distance = float('inf')
-    clase_predicha = None
+    # Diccionario para almacenar la suma de distancias y el conteo de elementos por clase
+    distancia_por_clase = {}
     
-    # Recorrer cada punto de entrenamiento
+    # Calcular la distancia de cada punto al punto de prueba y acumularla por clase
     for i in range(len(caracteristicas)):
         distancia = euclidean_distancia(caracteristicas[i], punto_prueba)
+        clase_actual = clases[i]
         
-        # Si la distancia actual es menor que la mínima, actualizar
-        if distancia < min_distance:
-            min_distance = distancia
-            clase_predicha = clases[i]  # Asignar la clase correspondiente
+        if clase_actual not in distancia_por_clase:
+            distancia_por_clase[clase_actual] = {'suma_distancia': 0, 'conteo': 0}
+        
+        distancia_por_clase[clase_actual]['suma_distancia'] += distancia
+        distancia_por_clase[clase_actual]['conteo'] += 1
+    
+    # Calcular la distancia media por clase
+    distancia_media_por_clase = {
+        clase: datos['suma_distancia'] / datos['conteo'] 
+        for clase, datos in distancia_por_clase.items()
+    }
+    
+    # Encontrar la clase con la distancia media más baja
+    clase_predicha = min(distancia_media_por_clase, key=distancia_media_por_clase.get)
     
     return clase_predicha
 
